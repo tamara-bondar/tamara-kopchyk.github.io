@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+}
+
+.left-part {
+    padding: 2% 10% 0 10%;
+    box-sizing: border-box;
+    width: 67%;
+    float: left;
+    background: #ffffff;
+}
+
+.right-part {
+    padding: 2% 2% 0 2%;
+    box-sizing: border-box;
+    width: 33%;
+    background: #F8F8F8;
+    height: 100%;
+    float: right;
+}
+
+header {
+    width: 87px;
+    height: 28px;
+    left: 140px;
+    top: 40px;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    
+    
+    color: #333333;    
+}
+
+#right-header {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #ABABAB;
+}
+
+.greeting {
+    margin-top: 5%;
+    height: 10%;
+}
+
+
+p.first-p {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+    color: #333333;
+}
+
+p.second-p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 44px;
+    color: #333333;
+}
+
+.inputs-div {
+    margin-top: 5%;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333333;
+}
+
+/* The container */
+.container {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333333;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: white;
+  border: 1px solid black;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: black;
+}
+
+details > summary {
+  list-style: none;
+  outline: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.categoryDiv {
+  margin-bottom: 3%;
+}
+
+.categories {
+  height: 28px;
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ABABAB;
+  border: 2px solid #F8F8F8;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 2%;
+  display: inline-block;
+  margin-bottom: 2%;
+}
+
+.categories:hover {
+  color: #333333;
+  background-color: #F8F8F8;
+}
+
+.selected {
+  color: #333333;
+  background-color: #F8F8F8;
+}
+
+.searchField {
+  margin: 2% 0 3%;
+  width: 100%;
+  border: 2px solid #333333;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 42px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ABABAB;
+  padding-left: 2%;
+  outline: none;
+
+}
+
+#getBtn {
+  background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+  border-radius: 10px;
+  border: 1px solid #7291FF;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFFFFF;
+  padding: 1% 4%;
+  margin-top: 2%;
+  outline: none;
+
+}
+
+#getBtn:hover {
+  background: #FFFFFF;
+  border-radius: 10px;
+  BORDER: 1px solid #7291FF;
+  color: #7291FF;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
+.joke {
+    padding: 5% 5% 10%;
+    box-sizing: border-box;
+    margin-top: 5%;
+    background: #F8F8F8;
+    border-radius: 20px;
+    margin-bottom: 5%;
+}
+
+
+.heart {
+  font-size: 25px;
+  color:red;
+  float: left;
+}
+
+.heartDiv {
+  height: 25px;
+  width: 25px;
+  box-sizing: border-box;
+  margin-left: 95%;
+  background: url(img/heart.png) no-repeat center;
+  float: right;
+}
+
+.heartChoose {
+  background: url(img/heartRed.png) no-repeat center;
+
+}
+
+.comment {
+  font-size: 30px;
+  color: #ABABAB;
+  padding: 5px;
+}
+
+.commentDiv {
+  height: 25px;
+  background: #FFF url('img/message.png') no-repeat center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  float: left;
+}
+
+.mainJoke {
+  width: 80%;
+  padding-left: 10%;
+  padding-bottom: 5%;
+}
+
+#jokeA {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  color: #ABABAB;
+  text-decoration: none;
+}
+
+#jokeId:hover {
+  color: #7291FF;
+  text-decoration: underline;
+}
+
+#data {
+  margin-top: 2%;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #333333;
+}
+
+#lastTime {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+  color: #ABABAB;
+  margin-left: 10%;
+  width: 60%;
+  float: left;
+  padding: 2% 0;
+}
+
+#categoryName {
+  background: #FFFFFF;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #333333;
+  float: right;
+  padding: 1% 3%;
+}

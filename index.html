@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0\font-awesome-4.7.0\css\font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>MSI 2020</title>
+</head>
+<body>
+    <div class="left-part">
+        
+        <header id="left-header">
+            MSI 2020
+        </header>
+    
+        <div class="greeting">
+            <p class="first-p">Hey!</p>
+            <p class="second-p">Let's try to find a joke for you:</p>
+        </div>
+    
+        <div class="inputs-div">
+
+            <details>
+                <summary> 
+                    <label class="container">Random
+                        <input type="radio" checked="checked" id="random" name="jokeType" value="random" >
+                        <span class="checkmark"></span>
+                    </label>
+                </summary>
+            </details>
+
+            <details id="categoryDetails">
+                <summary> 
+                    <label class="container">From categories
+                        <input  type="radio" id="category" name="jokeType" value="category">
+                        <span class="checkmark"></span>
+                  </label>
+                </summary>
+                <div class="categoryDiv">
+                    <!-- <span class="categories" id="celebrity"></span> -->
+                </div>
+            </details>
+
+            <details>
+                <summary> 
+                    <label class="container">Search
+                        <input type="radio" id="query" name="jokeType" value="query">
+                        <span class="checkmark"></span>
+                  </label>
+                </summary>
+                <input type="text" id="fname" name="fname" class="searchField" placeholder="Free text search...">
+            </details>
+
+        </div>
+
+        <button id="getBtn">Get a joke</button>
+    
+        <!-- <div class="joke">
+            <div class="heartDiv">
+                <i class="heart fa fa-heart-o"></i>
+            </div>
+            <div class="commentDiv">
+            </div>
+            <div class="mainJoke">
+                <a href="" id="jokeA">ID: <span id="jokeId"></span></a>
+                <div id="data"></div>    
+            </div>
+
+            <div id="lastTime"></div>
+            <div id="categoryName"></div>
+        </div> -->
+    </div>
+
+    <div class="right-part">
+        <header id="right-header">
+            Favourite
+        </header>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
