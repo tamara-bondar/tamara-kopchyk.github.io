@@ -1,3 +1,28 @@
+$('#toggle').click(function() {
+  $(this).toggleClass('active');
+  $('#overlay').toggleClass('open');
+  $('#navFull').toggleClass('navFull');
+ });
+
+
+var lastScrollTop = 0;
+
+$(document.getElementById("overlay")).scroll(function() {
+
+    var scrollTop = $(this).scrollTop();
+    console.log("test", scrollTop);
+    if (scrollTop > lastScrollTop && scrollTop < 75) {
+      document.getElementById("button_container_main").style.top = 40-scrollTop + "px";
+    } else if (scrollTop > lastScrollTop || (scrollTop < lastScrollTop && scrollTop > 75)) {
+      document.getElementById("button_container_main").style.top = "-4%";
+    } else {
+      document.getElementById("button_container_main").style.top = 40-scrollTop + "px";
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+
 const details = document.querySelectorAll("details");
 details.forEach((targetDetail) => {
   targetDetail.addEventListener("click", () => {
@@ -58,6 +83,7 @@ function jsonFromJoke(joke) {
   var jokeValue = $(mainJoke.getElementsByClassName("data")[0].getElementsByTagName("b")[0]).text();
   var categories = joke.getElementsByClassName("categoryName");
   var jokeJSON = `{"id": "` + joke.id + `", "url": "` + url + `", "value": "` + jokeValue + `", "categories": [` + ((categories.length > 0) ? categories[0] : "" ) + `]}`;
+  
   return JSON.parse(jokeJSON);
 }
 
@@ -73,7 +99,7 @@ $(document).ready ( function () {
       $(joke).removeClass("joke");
 
       // check if not in cookies already
-      $(joke).appendTo(".right-part");
+      $(joke).prependTo(".rightJokes");
       // Add to cookies
     });
 });
@@ -87,6 +113,12 @@ $(document).ready ( function () {
         $(mainJokeFavorite).addClass("heartDiv");
         $(mainJokeFavorite).removeClass("heartChoose");
         joke.remove();
+        // if (joke.parentElement.parentElement.getAttribute("class").includes("right-part-tablet")) {
+
+        // } else if (joke.parentElement.parentElement.getAttribute("class").includes("right-part")) {
+          
+        // }
+        
         // TODO: REMOVE from cookies joke
       }
       else
@@ -262,3 +294,5 @@ function deleteJokes() {
 
 
   randomFact();
+
+
