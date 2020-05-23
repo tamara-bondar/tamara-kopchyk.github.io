@@ -24,9 +24,9 @@ html, body {
     float: right;
 }
 
-.right-part-tablet {
+/* .right-part-tablet {
   display: none;
-}
+} */
 
 header {
     width: 87px;
@@ -372,14 +372,17 @@ details > summary::-webkit-details-marker {
 }
 
 @media screen and (max-width: 850px) {
-  .right-part {
+  /* .right-part {
     display: none;
   }
 
   .right-part-tablet {
     display: inline-block;
-  }
+  } */
 
+  #right-header {
+    display: none;
+  }
   .left-part {
     width: 100%;
     padding: 40px 5% 0 5%;

@@ -1,8 +1,25 @@
+window.onresize = windowResize;
+window.onload = windowResize;
+
+function windowResize () {
+  if ($(document).width() <= 850) {
+
+    $("#overlay").addClass("right-part-tablet overlay");
+    $("#overlay").removeClass("right-part");
+
+  }
+  else {
+    $("#overlay").addClass("right-part");
+    $("#overlay").removeClass("right-part-tablet overlay");
+  }
+}
+
 $('#toggle').click(function() {
   $(this).toggleClass('active');
   $('#overlay').toggleClass('open');
   $('#navFull').toggleClass('navFull');
  });
+
 
 
 var lastScrollTop = 0;
