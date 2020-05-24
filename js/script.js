@@ -43,20 +43,20 @@ $(document.getElementById("overlay")).scroll(function() {
   lastScrollTop = scrollTop;
 });
 
-
-const details = document.querySelectorAll("details");
-details.forEach((targetDetail) => {
-  targetDetail.addEventListener("click", () => {
-    details.forEach((detail) => {
-      if (detail !== targetDetail) {
-        detail.removeAttribute("open");
-        if (detail.hasAttribute("id")) {
-          $(".categories").remove();
-        }
+const details = document.querySelectorAll('details');
+details.forEach(targetDetail => {
+  targetDetail.addEventListener('toggle', toggleOpenOneOnly)
+})
+function toggleOpenOneOnly(e) {
+  if (this.open) {
+    details.forEach(detail =>{
+      if (detail != this && detail.open) {
+        detail.open = !open
       }
+      $(".categories").remove();
     });
-  });
-});
+  }
+}
 
 
 function jsonFromJoke(joke) {
