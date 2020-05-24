@@ -2,11 +2,11 @@ window.onresize = windowResize;
 window.onload = windowResize;
 
 function windowResize () {
-  console.log("window" + $(window).width());
-  console.log("document" + $(document).width());
+  console.log("window " + $(window).width());
+  console.log("document " + $(document).width());
   console.log("document height " + $(document).height());
 
-  console.log("window screen" + window.screen.height);
+  console.log("window screen " + window.screen.height);
 
   if ($(document).width() < 850) {
     $("#overlay").addClass("right-part-tablet overlay");
@@ -55,10 +55,11 @@ details.forEach((targetDetail) => {
       if (detail !== targetDetail) {
         detail.removeAttribute("open");
         if (detail.hasAttribute("id")) {
-            $(".categories").remove();
+          $(".categories").remove();
         }
       }
     });
+    resizeRightPart();
   });
 });
 
@@ -77,11 +78,14 @@ function jsonFromJoke(joke) {
     }
   }
 
-  var jokeJSON = `{"id": "` + joke.id + `",
-  "url": "`+ url +`", "value": "` + jokeValue + `",
-  "categories": [` + ((categories.length > 0) ? "\"" + categories[0].innerText + "\"" : "" ) + `],
-  "updated_at": "` + updated_at + `"}`;
-  return JSON.parse(jokeJSON);
+  // var jokeJSON = `{"id": "` + joke.id + `",
+  // "url": "`+ url +`", "value": '` + jokeValue + `',
+  // "categories": [` + ((categories.length > 0) ? "\"" + categories[0].innerText + "\"" : "" ) + `],
+  // "updated_at": "` + updated_at + `"}`;
+  
+  var jokeJSON = {"id": joke.id, "url": url, "categories": [categories.length > 0 ? categories[0].innerText : "" ], "updated_at": updated_at, "value": jokeValue};
+  // console.log("json text", jokeJSON);
+  return jokeJSON;
 }
 
 function removeJokeFromFavorite(jokeId) {
@@ -180,7 +184,6 @@ $(document).ready ( function () {
         }
         joke.remove();
         removeJokeFromFavorite(jokeId);
-        resizeRightPart();
       }
       else
       {
@@ -219,6 +222,7 @@ function randomFact() {
       var json = JSON.parse(this.responseText);
       localStorage.removeItem("update_dates");
       createNew(json);
+      resizeRightPart();
     }
   };
   xmlhttp.open("GET", url, true);
@@ -240,6 +244,7 @@ function getCategories() {
   });
   xhr.open("GET", url); 
   xhr.send();
+  resizeRightPart();
 }
 
 function categoryFact() {
@@ -251,6 +256,7 @@ function categoryFact() {
       var json = JSON.parse(this.responseText);
       localStorage.removeItem("update_dates");
       createNew(json);
+      resizeRightPart();
     }
   };
 
@@ -279,6 +285,7 @@ function parseSearchJson(json) {
     var results = json["result"];
     localStorage.removeItem("update_dates");
     results.forEach(createNew);
+    resizeRightPart();
   }
 }
 `1`
@@ -313,7 +320,6 @@ function createNew(joke, index, ) {
       <div class="lastTime"> Last update: ` + days + ` hours ago </div>
       ` + ((joke["categories"].length > 0) ? ('<div class="categoryName">' + joke["categories"] + '</div>') : "") + `
     </div></div>`);
-    resizeRightPart();
 }
 
 
@@ -331,22 +337,26 @@ function resizeRightPart() {
   var body = document.body;
   var html = document.documentElement;
 
-    console.log( body.scrollHeight);
-    console.log( body.offsetHeight);
-    console.log( html.clientHeight);
-    console.log( html.scrollHeight);
-    console.log( html.offsetHeight);
+    console.log("========================");
+    console.log("body scroll", body.scrollHeight);
+    console.log("body offset", body.offsetHeight);
+    // console.log("body client", body.clientHeight);
+    // console.log("html client", html.clientHeight);
+    // console.log("html scroll", html.scrollHeight);
+    // console.log("html offset", html.offsetHeight);
+    console.log("height", $(document).height());
 
-  if((body.scrollHeight > body.offsetHeight) && ($(document).width() >= 850)) {
-    document.getElementById("overlay").style.height = document.getElementById("left-part").offsetHeight + "px";
-    if(document.getElementById("overlay").offsetHeight < body.offsetHeight) {
-      document.getElementById("overlay").style.height = "100%";
-    }
-  }
-  else {
-    console.log("HERE 2");
-    document.getElementById("overlay").style.height = "100%";
-  }
+  // if((body.scrollHeight >= body.offsetHeight) && ($(document).width() >= 850)) {
+  //   console.log("overlay offset", document.getElementById("overlay").offsetHeight)
+  //   document.getElementById("overlay").style.height = body.scrollHeight + "px";
+    // if(document.getElementById("overlay").offsetHeight < body.offsetHeight) {
+    //   document.getElementById("overlay").style.height = "100%";
+    // }
+  // }
+  // else {
+  //   console.log("HERE 2");
+  //   document.getElementById("overlay").style.height = "100%";
+  // }
 }
 
 

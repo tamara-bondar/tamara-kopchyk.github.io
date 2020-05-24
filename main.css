@@ -22,7 +22,7 @@ html, body {
     box-sizing: border-box;
     width: 33%;
     background: #F8F8F8;
-    height: 100%;
+    min-height: 100%;
     float: right;
     /* overflow-y: auto; */
 }
@@ -355,6 +355,7 @@ details > summary::-webkit-details-marker {
   font-size: 18px;
   line-height: 26px;
   color: #333333;
+  word-wrap: break-word;
 }
 
 .lastTime {
