@@ -424,12 +424,18 @@ details > summary::-webkit-details-marker {
     z-index: 50;
   }
 
+  .headerDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .button_container_main {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
-    top: 40px;
-    right: 5%;
+    /* top: 40px; */
+    right: 40px;
     height: 28px;
     width: 125px;
     cursor: pointer;

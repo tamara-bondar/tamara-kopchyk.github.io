@@ -26,25 +26,31 @@ $('#toggle').click(function() {
   $('#navFull').toggleClass('navFull');
   if (document.getElementById("overlay").getAttribute("class").includes("open")) {
     document.getElementsByTagName('html')[0].style.overflow = "hidden";
+    document.getElementById("button_container_main").style.position = "absolute";
+
   }
-  else  
-  document.getElementsByTagName('html')[0].style.overflow = "";
+  else  {
+    document.getElementsByTagName('html')[0].style.overflow = "";
+    document.getElementById("button_container_main").style.position = "";
+  }
+
 });
 
 var lastScrollTop = 0;
 
 $(document.getElementById("overlay")).scroll(function() {
+  var top = $(document).width() < 560 ? 20 : 40 ;
 
-    var scrollTop = $(this).scrollTop();
-    if (scrollTop > lastScrollTop && scrollTop < 75) {
-      document.getElementById("button_container_main").style.top = 40 - scrollTop + "px";
-    } else if (scrollTop > lastScrollTop || (scrollTop < lastScrollTop && scrollTop >= 75)) {
-      document.getElementById("button_container_main").style.top = "-40px";
-    } else {
-      document.getElementById("button_container_main").style.top = 40-scrollTop + "px";
-    }
-    
-    lastScrollTop = scrollTop;
+  var scrollTop = $(this).scrollTop();
+  if (scrollTop > lastScrollTop && scrollTop < 75) {
+    document.getElementById("button_container_main").style.top = top - scrollTop + "px";
+  } else if (scrollTop > lastScrollTop || (scrollTop < lastScrollTop && scrollTop >= 75)) {
+    document.getElementById("button_container_main").style.top = "-40px";
+  } else {
+    document.getElementById("button_container_main").style.top = top-scrollTop + "px";
+  }
+  
+  lastScrollTop = scrollTop;
 });
 
 
@@ -78,7 +84,6 @@ function jsonFromJoke(joke) {
     }
   }
   var jokeJSON = {"id": joke.id, "url": url, "categories": [categories.length > 0 ? categories[0].innerText : "" ], "updated_at": updated_at, "value": jokeValue};
-  console.log("jokeJSON", jokeJSON);
   return jokeJSON;
 }
 
