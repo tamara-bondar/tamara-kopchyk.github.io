@@ -1,13 +1,8 @@
 window.onresize = windowResize;
 window.onload = windowResize;
 
+
 function windowResize () {
-  console.log("window " + $(window).width());
-  console.log("document " + $(document).width());
-  console.log("document height " + $(document).height());
-
-  console.log("window screen " + window.screen.height);
-
   if ($(document).width() < 850) {
     $("#overlay").addClass("right-part-tablet overlay");
     $("#overlay").removeClass("right-part");
@@ -16,7 +11,6 @@ function windowResize () {
     $("#overlay").addClass("right-part");
     $("#overlay").removeClass("right-part-tablet overlay");
   }
-  resizeRightPart();
 }
 
 
@@ -27,20 +21,17 @@ $('#toggle').click(function() {
   if (document.getElementById("overlay").getAttribute("class").includes("open")) {
     document.getElementsByTagName('html')[0].style.overflow = "hidden";
     document.getElementById("button_container_main").style.position = "absolute";
-
   }
   else  {
     document.getElementsByTagName('html')[0].style.overflow = "";
     document.getElementById("button_container_main").style.position = "";
   }
-
 });
 
-var lastScrollTop = 0;
 
+var lastScrollTop = 0;
 $(document.getElementById("overlay")).scroll(function() {
   var top = $(document).width() < 560 ? 20 : 40 ;
-
   var scrollTop = $(this).scrollTop();
   if (scrollTop > lastScrollTop && scrollTop < 75) {
     document.getElementById("button_container_main").style.top = top - scrollTop + "px";
@@ -48,8 +39,7 @@ $(document.getElementById("overlay")).scroll(function() {
     document.getElementById("button_container_main").style.top = "-40px";
   } else {
     document.getElementById("button_container_main").style.top = top-scrollTop + "px";
-  }
-  
+  } 
   lastScrollTop = scrollTop;
 });
 
@@ -65,16 +55,15 @@ details.forEach((targetDetail) => {
         }
       }
     });
-    resizeRightPart();
   });
 });
+
 
 function jsonFromJoke(joke) {
   var mainJoke = joke.getElementsByClassName("mainJoke")[0];
   var url = mainJoke.getElementsByClassName("jokeA")[0].getAttribute("href");
   var jokeValue = $(mainJoke.getElementsByClassName("data")[0].getElementsByTagName("b")[0]).text();
   var categories = joke.getElementsByClassName("categoryName");
-  
   var update_at_text = localStorage.getItem("update_dates");
   var jokes_updates = JSON.parse(update_at_text);
   var updated_at = "";
@@ -88,6 +77,7 @@ function jsonFromJoke(joke) {
   return jokeJSON;
 }
 
+
 function removeJokeFromFavorite(jokeId) {
   var favorite_jokes = getFavoriteJokes();
   favorite_jokes = favorite_jokes.filter(function(joke, idx) {
@@ -96,11 +86,13 @@ function removeJokeFromFavorite(jokeId) {
   localStorage.setItem("favorite_jokes", JSON.stringify(favorite_jokes));
 }
 
+
 function addJokeToFavorite(joke) {
   var favorite_jokes = getFavoriteJokes();
   favorite_jokes.unshift(joke);
   localStorage.setItem("favorite_jokes", JSON.stringify(favorite_jokes));
 }
+
 
 function getFavoriteJokes() {
   var favoriteJokes = localStorage.getItem("favorite_jokes");
@@ -112,11 +104,10 @@ function getFavoriteJokes() {
   }
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
   var favorite_jokes = getFavoriteJokes();
-  console.log("fav", favorite_jokes);
   for (const joke of favorite_jokes) {
-  
     var jokeUpdateTime = new Date(joke["updated_at"]);
     var currentTime = new Date();
     var days = Math.round((currentTime.getTime() - jokeUpdateTime.getTime()) / (1000 * 3600));
@@ -137,10 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="lastTime"> Last update: ` + days + ` hours ago </div>
         ` + ((joke["categories"].length > 0) ? ('<div class="categoryName">' + joke["categories"] + '</div>') : "") + `
       </div> </div>`);
-      console.log(joke["categories"], joke["categories"].length);
-      console.log(((joke["categories"].length > 0) ? ('<div class="categoryName">' + joke["categories"] + '</div>') : ""));
   }
 });
+
 
 function isJokeWasAdded(jokeId) {
   var favorite_jokes = getFavoriteJokes();
@@ -154,6 +144,7 @@ function isJokeWasAdded(jokeId) {
   return false;
 }
 
+
 $(document).ready ( function () {
   $(document).on ("click", ".heartDiv", function () {
       $(this).addClass("heartChoose");
@@ -163,15 +154,13 @@ $(document).ready ( function () {
       joke.id = "favorite-joke-" + joke.id;
       $(joke).addClass("jokeFav");
       $(joke).removeClass("joke");
-      console.log(json);
       if (!isJokeWasAdded(json["id"])) {
-        
         $(joke).prependTo(".rightJokes");
         addJokeToFavorite(json);
       }
-      resizeRightPart();
     });
 });
+
 
 $(document).ready ( function () {
   $(document).on ("click", ".heartChoose", function () {
@@ -197,9 +186,9 @@ $(document).ready ( function () {
         favJoke.remove();
         removeJokeFromFavorite(joke.id);
       }
-      resizeRightPart();
     });
 });
+
 
 
 $(document).ready(function(){
@@ -224,7 +213,6 @@ function randomFact() {
       var json = JSON.parse(this.responseText);
       localStorage.removeItem("update_dates");
       createNew(json);
-      resizeRightPart();
     }
   };
   xmlhttp.open("GET", url, true);
@@ -246,8 +234,8 @@ function getCategories() {
   });
   xhr.open("GET", url); 
   xhr.send();
-  resizeRightPart();
 }
+
 
 function categoryFact() {
   var xmlhttp = new XMLHttpRequest();
@@ -258,13 +246,12 @@ function categoryFact() {
       var json = JSON.parse(this.responseText);
       localStorage.removeItem("update_dates");
       createNew(json);
-      resizeRightPart();
     }
   };
-
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
 }
+
 
 function queryFact() {
   var xmlhttp = new XMLHttpRequest();
@@ -287,7 +274,6 @@ function parseSearchJson(json) {
     var results = json["result"];
     localStorage.removeItem("update_dates");
     results.forEach(createNew);
-    resizeRightPart();
   }
 }
 `1`
@@ -329,60 +315,28 @@ function deleteJokes() {
   var checkJokes = document.getElementsByClassName("joke");
   if(checkJokes.length > 0) {
     $(".joke").remove();
-
   }
 }
 
 
-function resizeRightPart() {
-  
-  var body = document.body;
-  var html = document.documentElement;
+document.getElementById("getBtn").addEventListener("click", function() {
 
-    console.log("========================");
-    console.log("body scroll", body.scrollHeight);
-    console.log("body offset", body.offsetHeight);
-    // console.log("body client", body.clientHeight);
-    // console.log("html client", html.clientHeight);
-    // console.log("html scroll", html.scrollHeight);
-    // console.log("html offset", html.offsetHeight);
-    console.log("height", $(document).height());
+  if($("#random").prop("checked")) {
 
-  // if((body.scrollHeight >= body.offsetHeight) && ($(document).width() >= 850)) {
-  //   console.log("overlay offset", document.getElementById("overlay").offsetHeight)
-  //   document.getElementById("overlay").style.height = body.scrollHeight + "px";
-    // if(document.getElementById("overlay").offsetHeight < body.offsetHeight) {
-    //   document.getElementById("overlay").style.height = "100%";
-    // }
-  // }
-  // else {
-  //   console.log("HERE 2");
-  //   document.getElementById("overlay").style.height = "100%";
-  // }
-}
+      deleteJokes();
+      randomFact();
+    }
+    else if($("#category").prop("checked")) {
+      deleteJokes();
+      categoryFact();
+    }
+    else {
+      deleteJokes();
+      queryFact();
+    }
 
+});
 
-  document.getElementById("getBtn").addEventListener("click", function() {
-  
-    if($("#random").prop("checked")) {
-
-        deleteJokes();
-          console.log("Random joke");
-        randomFact();
-      }
-     else if($("#category").prop("checked")) {
-       deleteJokes();
-        console.log("Category joke!");
-        categoryFact();
-      }
-      else {
-        deleteJokes();
-        console.log("Query joke!");
-        queryFact();
-      }
-
-  });
-
-  randomFact();
+randomFact();
 
 
