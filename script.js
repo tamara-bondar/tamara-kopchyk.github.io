@@ -78,6 +78,7 @@ function jsonFromJoke(joke) {
     }
   }
   var jokeJSON = {"id": joke.id, "url": url, "categories": [categories.length > 0 ? categories[0].innerText : "" ], "updated_at": updated_at, "value": jokeValue};
+  console.log("jokeJSON", jokeJSON);
   return jokeJSON;
 }
 
