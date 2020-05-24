@@ -83,7 +83,8 @@ function jsonFromJoke(joke) {
       updated_at = joke_update["updated_at"];
     }
   }
-  var jokeJSON = {"id": joke.id, "url": url, "categories": [categories.length > 0 ? categories[0].innerText : "" ], "updated_at": updated_at, "value": jokeValue};
+  var jokeJSON = {"id": joke.id, "url": url, "updated_at": updated_at, "value": jokeValue};
+  jokeJSON["categories"] = categories.length > 0 ? [categories[0].innerText] : [];
   return jokeJSON;
 }
 
@@ -136,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="lastTime"> Last update: ` + days + ` hours ago </div>
         ` + ((joke["categories"].length > 0) ? ('<div class="categoryName">' + joke["categories"] + '</div>') : "") + `
       </div> </div>`);
+      console.log(joke["categories"], joke["categories"].length);
+      console.log(((joke["categories"].length > 0) ? ('<div class="categoryName">' + joke["categories"] + '</div>') : ""));
   }
 });
 
